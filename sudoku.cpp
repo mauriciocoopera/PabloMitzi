@@ -104,7 +104,10 @@ int main(int argc, char* argv[]) {
   populateBoardFromFile(theBoard,filename);
 
   cout << "Welcome to the Game of Sudoku" << endl;
-  // Here you provide a menu to the user to do what they want
+  
+  cout << endl;
+  cout << endl;
+  
   cout << "Welcome to the sudoku world, please enjoy" << endl;
   cout << "The options that are able for you while you play are: "<< endl;
   cout << "Print: Will print you the board." << endl;
@@ -114,6 +117,7 @@ int main(int argc, char* argv[]) {
   cout << endl;
   cout << endl;
   cout << endl;
+ 
   string userChoice = "";
   do{
     cout << "What would you like to do (print, write, erase, quit): ";
