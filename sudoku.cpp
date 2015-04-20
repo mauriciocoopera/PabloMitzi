@@ -131,7 +131,6 @@ int main(int argc, char* argv[]) {
     	cin >> column;
     	cout<< "Where would you like to enter the new number (row) ? " << endl;
     	cin >> row;
-      // ask user for position (row,column) and number
       // check if valid (legal) and modify the board or notify that the move is invalid
       continue;
     }
