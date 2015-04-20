@@ -3,11 +3,11 @@
 //
 // Sudoku
 
-// Student Name
-// Student Number
+// Student Mitzi Sarahi Hernández Jauregui
+// Student A01630243
 // and
-// Student Name
-// Student Number
+// Student Pablo Daniel Guerra Cervantes
+// Student A01271665
 
 // Standard libraries
 #include <string>
