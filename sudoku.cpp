@@ -83,7 +83,6 @@ void printBoard(vector< vector<int> >& board){
  * any other number of parameters is illegal
  */
 int main(int argc, char* argv[]) {
-int column, row;
   string filename;
 
   vector< vector<int> > theBoard(BOARDSIZE,vector<int>(BOARDSIZE));
@@ -128,16 +127,19 @@ int column, row;
       continue;
     }
     if(userChoice == "write"){
+    	cout<< "Where would you like to enter the new number (column) ? " << endl;
+    	cin >> column;
+    	cout<< "Where would you like to enter the new number (row) ? " << endl;
+    	cin >> row;
       // ask user for position (row,column) and number
       // check if valid (legal) and modify the board or notify that the move is invalid
       continue;
     }
     if(userChoice == "erase"){
-    	cout<< "where is the column that you want change? "<<endl;
-    	cin>> column;
-    	cout<< "where is the row that you want change? "<<endl;
-    	cin>>row;
-      // ask user for position (row,column) to erase
+    	cout<< "Where is the  column of the number that has to be erased ? " << endl;
+    	cin >> column;
+    	cout<< "Where is the row of the number that has to be erased ? " << endl;
+    	cin >> row;
       // check if valid (legal) and modify the board or notify that the move is invalid
       continue;
     }
