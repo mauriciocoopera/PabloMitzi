@@ -83,6 +83,7 @@ void printBoard(vector< vector<int> >& board){
  * any other number of parameters is illegal
  */
 int main(int argc, char* argv[]) {
+  int column, row;
   string filename;
 
   vector< vector<int> > theBoard(BOARDSIZE,vector<int>(BOARDSIZE));
