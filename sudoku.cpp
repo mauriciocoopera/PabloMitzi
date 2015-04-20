@@ -87,6 +87,7 @@ int main(int argc, char* argv[]) {
   string filename;
 
   vector< vector<int> > theBoard(BOARDSIZE,vector<int>(BOARDSIZE));
+  vector< vector<int> > user_board(BOARDSIZE,vector<int>(BOARDSIZE));
 
   switch(argc)
     {
@@ -103,22 +104,23 @@ int main(int argc, char* argv[]) {
 
   createZeroBoard(theBoard);
   populateBoardFromFile(theBoard,filename);
+  user_board = theBoard; //compare
 
   cout << "Welcome to the Game of Sudoku" << endl;
-  
+
   cout << endl;
   cout << endl;
-  
+
   cout << "Welcome to the sudoku world, please enjoy" << endl;
   cout << "The options that are able for you while you play are: "<< endl;
   cout << "Print: Will print you the board." << endl;
   cout << "Write: Will ask you for a row and a colum for the new number." << endl;
   cout << "Quit: Will close the sudoku." << endl;
-  
+
   cout << endl;
   cout << endl;
   cout << endl;
- 
+
   string userChoice = "";
   do{
     cout << "What would you like to do (print, write, erase, quit): ";
