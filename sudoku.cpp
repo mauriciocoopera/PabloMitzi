@@ -110,11 +110,10 @@ int main(int argc, char* argv[]) {
   cout << "Print: Will print you the board." << endl;
   cout << "Write: Will ask you for a row and a colum for the new number." << endl;
   cout << "Quit: Will close the sudoku." << endl;
-  // The options are:
-  //    print (call the printBoard function)
-  //    write (ask user what number they want to add and where), must accept only legal values
-  //    erase (ask user which position they want to erase), must not erase original values
-  //    quit (quit the program)
+  
+  cout << endl;
+  cout << endl;
+  cout << endl;
   string userChoice = "";
   do{
     cout << "What would you like to do (print, write, erase, quit): ";
