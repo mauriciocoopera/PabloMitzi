@@ -87,7 +87,7 @@ int main(int argc, char* argv[]) {
   string filename;
 
   vector< vector<int> > theBoard(BOARDSIZE,vector<int>(BOARDSIZE));
-  vector< vector<int> > user_board(BOARDSIZE,vector<int>(BOARDSIZE));
+  vector< vector<int> > user_Board(BOARDSIZE,vector<int>(BOARDSIZE));
 
   switch(argc)
     {
@@ -104,7 +104,7 @@ int main(int argc, char* argv[]) {
 
   createZeroBoard(theBoard);
   populateBoardFromFile(theBoard,filename);
-  user_board = theBoard; //compare
+  user_Board = theBoard; //compare
 
   cout << "Welcome to the Game of Sudoku" << endl;
 
@@ -130,12 +130,24 @@ int main(int argc, char* argv[]) {
       continue;
     }
     if(userChoice == "write"){
-    	cout<< "Where would you like to enter the new number (column) ? " << endl;
-    	cin >> column;
-    	cout<< "Where would you like to enter the new number (row) ? " << endl;
-    	cin >> row;
-    	cout << "Give the new number: "<< endl;
-    	cin >> number;
+        do
+        {
+      	cout<< "Where would you like to enter the new number (column) ? " << endl;
+      	cin >> column;
+      	cout<< "Where would you like to enter the new number (row) ? " << endl;
+      	cin >> row;
+        cout << "Give the new number: "<< endl;
+        cin >> number;
+        //theBoard [row][column] = number;
+        /*if (theBoard [row][column] != user_Board [row][column] ) //arregla validez de numeros (un original no se puede cambiar)
+          cout << "Invalid move, the number has to be different than original numbers, try again" << endl;
+        else*/
+          if (number == 0)
+            cout << "Invalid move, write a number different than 0, try again" << endl;
+          else
+          theBoard [row][column] = number;
+      }while (number == 0);
+
       // check if valid (legal) and modify the board or notify that the move is invalid
       continue;
     }
@@ -144,7 +156,10 @@ int main(int argc, char* argv[]) {
     	cin >> column;
     	cout<< "Where is the row of the number that has to be erased ? " << endl;
     	cin >> row;
-      // check if valid (legal) and modify the board or notify that the move is invalid
+      if (theBoard == user_Board)
+        cout << "Invalid move, the number has to be different than numbers that are given, try again" << endl;
+      else
+        theBoard [row][column] = 0;
       continue;
     }
     if(userChoice == "quit"){
