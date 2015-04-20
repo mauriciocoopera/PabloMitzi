@@ -105,6 +105,11 @@ int main(int argc, char* argv[]) {
 
   cout << "Welcome to the Game of Sudoku" << endl;
   // Here you provide a menu to the user to do what they want
+  cout << "Welcome to the sudoku world, please enjoy" << endl;
+  cout << "The options that are able for you while you play are: "<< endl;
+  cout << "Print: Will print you the board." << endl;
+  cout << "Write: Will ask you for a row and a colum for the new number." << endl;
+  cout << "Quit: Will close the sudoku." << endl;
   // The options are:
   //    print (call the printBoard function)
   //    write (ask user what number they want to add and where), must accept only legal values
