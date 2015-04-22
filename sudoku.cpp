@@ -48,8 +48,8 @@ void populateBoardFromFile(vector< vector<int> >& board, string filename){
     for(int r = 0; r < BOARDSIZE ; r++){
       // grab a full line from the file
       for(int c = 0; c < BOARDSIZE ; c++){
-	infile >> cell;
-	board[r][c] = cell;
+  infile >> cell;
+  board[r][c] = cell;
       }
     }
   } else {
@@ -68,7 +68,7 @@ void printBoard(vector< vector<int> >& board){
   for(int r = 0; r < BOARDSIZE ; r++){
     for(int c = 0; c < BOARDSIZE ; c++){
       if(c > 0){
-	cout << " ";
+  cout << " ";
       }
       cout << board[r][c];
     }
@@ -106,7 +106,7 @@ int main(int argc, char* argv[]) {
   populateBoardFromFile(theBoard,filename);
   user_Board = theBoard; //compare
 
-  cout << "\x1b[36m\x1b[47mWelcome to Sudoku" << endl;
+  cout << "\x1b[37m\x1b[44mWelcome to Sudoku" << endl;
   cout << endl;
   cout << endl;
   cout << "Welcome to the sudoku world, please enjoy" << endl;
@@ -115,26 +115,24 @@ int main(int argc, char* argv[]) {
   cout << "Write: Will ask you for a row and a colum for the new number." << endl;
   cout << "Quit: Will close the sudoku." << endl;
   cout << endl;
-  cout << endl;
-  cout << endl;
   cout << "\x1b[39;49m";
-
   string userChoice = "";
-  cout << "\x1b[35m\x1b[44mWelcome to Sudoku" << endl;
+  cout << "\x1b[35m\x1b[40mLet begin" << endl;
   do{
-    cout << "What would you like to do (print, write, erase, quit): ";
+    cout << "\x1b[35m\x1b[40mWhat would you like to do (print, write, erase, quit):" << endl;
     cin >> userChoice;
     if(userChoice == "print"){
+      cout << "\x1b[33m\x1b[40mThe table is: " << endl;
       printBoard(theBoard);
       continue;
     }
     if(userChoice == "write"){
         do
         {
-      	cout<< "Where would you like to enter the new number (column) ? " << endl;
-      	cin >> column;
-      	cout<< "Where would you like to enter the new number (row) ? " << endl;
-      	cin >> row;
+        cout << "\x1b[36m\x1b[40mWhere would you like to enter the new number (column) ? " << endl;
+        cin >> column;
+        cout<< "Where would you like to enter the new number (row) ? " << endl;
+        cin >> row;
         cout << "Give the new number: "<< endl;
         cin >> number;
         //theBoard [row][column] = number;
@@ -151,10 +149,10 @@ int main(int argc, char* argv[]) {
       continue;
     }
     if(userChoice == "erase"){
-    	cout<< "Where is the  column of the number that has to be erased ? " << endl;
-    	cin >> column;
-    	cout<< "Where is the row of the number that has to be erased ? " << endl;
-    	cin >> row;
+      cout << "\x1b[32m\x1b[40mWhere is the  column of the number that has to be erased ? " << endl;
+      cin >> column;
+      cout<< "Where is the row of the number that has to be erased ? " << endl;
+      cin >> row;
       if (theBoard == user_Board)
         cout << "Invalid move, the number has to be different than numbers that are given, try again" << endl;
       else
