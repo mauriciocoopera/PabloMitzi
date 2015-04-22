@@ -106,22 +106,21 @@ int main(int argc, char* argv[]) {
   populateBoardFromFile(theBoard,filename);
   user_Board = theBoard; //compare
 
-  cout << "Welcome to the Game of Sudoku" << endl;
-
+  cout << "\x1b[36m\x1b[47mWelcome to Sudoku" << endl;
   cout << endl;
   cout << endl;
-
   cout << "Welcome to the sudoku world, please enjoy" << endl;
   cout << "The options that are able for you while you play are: "<< endl;
   cout << "Print: Will print you the board." << endl;
   cout << "Write: Will ask you for a row and a colum for the new number." << endl;
   cout << "Quit: Will close the sudoku." << endl;
-
   cout << endl;
   cout << endl;
   cout << endl;
+  cout << "\x1b[39;49m";
 
   string userChoice = "";
+  cout << "\x1b[35m\x1b[44mWelcome to Sudoku" << endl;
   do{
     cout << "What would you like to do (print, write, erase, quit): ";
     cin >> userChoice;
@@ -168,6 +167,7 @@ int main(int argc, char* argv[]) {
     }
     cout << "That was not a valid choice, try again." << endl;
   } while (userChoice != "quit");
-
+  cout << "\x1b[39;49m";
   return 0;
 }
+
