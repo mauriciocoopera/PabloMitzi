@@ -75,6 +75,16 @@ void printBoard(vector< vector<int> >& board){
     cout << endl;
   }
 }
+
+
+bool n_check (int row, int column)
+{
+  if ((row < BOARDSIZE) && (column < BOARDSIZE))
+    return true;
+  else
+    cout << "Please enter a number lower than 9, thank you" << endl;
+    return false;
+}
 /*
  * Your main program goes here.
  * first get the parameters, check if parameter size is 2
@@ -104,7 +114,7 @@ int main(int argc, char* argv[]) {
 
   createZeroBoard(theBoard);
   populateBoardFromFile(theBoard,filename);
-  user_Board = theBoard; //compare
+  user_Board = theBoard;
 
   cout << "\x1b[37m\x1b[44mWelcome to Sudoku" << endl;
   cout << endl;
@@ -149,14 +159,16 @@ int main(int argc, char* argv[]) {
       continue;
     }
     if(userChoice == "erase"){
+      do {
       cout << "\x1b[32m\x1b[40mWhere is the  column of the number that has to be erased ? " << endl;
       cin >> column;
       cout<< "Where is the row of the number that has to be erased ? " << endl;
       cin >> row;
-      if (theBoard == user_Board)
-        cout << "Invalid move, the number has to be different than numbers that are given, try again" << endl;
-      else
-        theBoard [row][column] = 0;
+      if (user_Board [row][column] != 0)
+        cout << "Original numbers can´t be modified" << endl;
+        else
+          theBoard [row][column] = 0;
+      }while ((user_Board [row][column] != 0)|| (n_check (column, row) != true));
       continue;
     }
     if(userChoice == "quit"){
@@ -168,4 +180,3 @@ int main(int argc, char* argv[]) {
   cout << "\x1b[39;49m";
   return 0;
 }
-
