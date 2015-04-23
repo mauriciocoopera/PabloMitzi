@@ -85,6 +85,24 @@ bool n_check (int row, int column)
     cout << "Please enter a number lower than 9, thank you" << endl;
     return false;
 }
+
+bool n_checkl (int row, int column,int number,vector< vector<int> >& theBoard)
+{
+    for (int i=0; i< BOARDSIZE; i++)
+    {
+      if (theBoard[i][column] == number)
+        cout << "Invalid move, an equal numver it´s already in the row" << endl;
+        return false;
+    }
+
+    for (int i=0; i< BOARDSIZE; i++)
+    {
+      if (theBoard[row][i] == number)
+        cout << "Invalid move, an equal numver it´s already in the column" << endl;
+        return false;
+    }
+    return true;
+}
 /*
  * Your main program goes here.
  * first get the parameters, check if parameter size is 2
@@ -97,7 +115,7 @@ int main(int argc, char* argv[]) {
   string filename;
 
   vector< vector<int> > theBoard(BOARDSIZE,vector<int>(BOARDSIZE));
-  vector< vector<int> > user_Board(BOARDSIZE,vector<int>(BOARDSIZE));
+  vector< vector<int> > programer_Board(BOARDSIZE,vector<int>(BOARDSIZE));
 
   switch(argc)
     {
@@ -114,7 +132,10 @@ int main(int argc, char* argv[]) {
 
   createZeroBoard(theBoard);
   populateBoardFromFile(theBoard,filename);
-  user_Board = theBoard;
+
+  createZeroBoard(programer_Board);
+  populateBoardFromFile(programer_Board,filename);
+
 
   cout << "\x1b[37m\x1b[44mWelcome to Sudoku" << endl;
   cout << endl;
@@ -137,38 +158,42 @@ int main(int argc, char* argv[]) {
       continue;
     }
     if(userChoice == "write"){
-        do
-        {
+      do
+      {
         cout << "\x1b[36m\x1b[40mWhere would you like to enter the new number (column) ? " << endl;
         cin >> column;
         cout<< "Where would you like to enter the new number (row) ? " << endl;
         cin >> row;
+        if (n_check (column, row) != true)
+          cout <<"Invalid move, row and number must be lower than 9" << endl;
+        else
+          if (programer_Board [row][column] != 0)
+            cout << "Original numbers can´t be modified" << endl;
+      }while ((n_check (column, row) != true)|| (programer_Board [row][column] != 0));
+
+      do
+      {
         cout << "Give the new number: "<< endl;
         cin >> number;
-        //theBoard [row][column] = number;
-        /*if (theBoard [row][column] != user_Board [row][column] ) //arregla validez de numeros (un original no se puede cambiar)
-          cout << "Invalid move, the number has to be different than original numbers, try again" << endl;
-        else*/
-          if (number == 0)
-            cout << "Invalid move, write a number different than 0, try again" << endl;
-          else
-          theBoard [row][column] = number;
-      }while (number == 0);
-
+        //if (theBoard [row][column])
+      }while (n_checkl(row,column,number,theBoard));
       // check if valid (legal) and modify the board or notify that the move is invalid
       continue;
     }
     if(userChoice == "erase"){
       do {
-      cout << "\x1b[32m\x1b[40mWhere is the  column of the number that has to be erased ? " << endl;
-      cin >> column;
-      cout<< "Where is the row of the number that has to be erased ? " << endl;
-      cin >> row;
-      if (user_Board [row][column] != 0)
+        cout << "\x1b[32m\x1b[40mWhere is the  column of the number that has to be erased ? " << endl;
+        cin >> column;
+        cout<< "Where is the row of the number that has to be erased ? " << endl;
+        cin >> row;
+        if (n_check (column, row) != true)
+          cout <<"Invalid move, row and number must be lower than 9" << endl;
+      }while (n_check (column, row) != true);
+
+      if (programer_Board [row][column] != 0)
         cout << "Original numbers can´t be modified" << endl;
         else
           theBoard [row][column] = 0;
-      }while ((user_Board [row][column] != 0)|| (n_check (column, row) != true));
       continue;
     }
     if(userChoice == "quit"){
