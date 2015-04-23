@@ -90,16 +90,18 @@ bool n_checkl (int row, int column,int number,vector< vector<int> >& theBoard)
 {
     for (int i=0; i< BOARDSIZE; i++)
     {
-      if (theBoard[i][column] == number)
+      if (theBoard[row][i] == number){
         cout << "Invalid move, an equal numver it´s already in the row" << endl;
         return false;
+      }
     }
 
     for (int i=0; i< BOARDSIZE; i++)
     {
-      if (theBoard[row][i] == number)
+      if (theBoard[i][column] == number){
         cout << "Invalid move, an equal numver it´s already in the column" << endl;
         return false;
+      }
     }
     return true;
 }
@@ -175,8 +177,9 @@ int main(int argc, char* argv[]) {
       {
         cout << "Give the new number: "<< endl;
         cin >> number;
-        //if (theBoard [row][column])
-      }while (n_checkl(row,column,number,theBoard));
+      }while ((n_checkl(row,column,number,theBoard)) != true);
+      theBoard [row][column] = number;
+      //FALTA LA CONDICIÖN DEL CUADRANTE
       // check if valid (legal) and modify the board or notify that the move is invalid
       continue;
     }
