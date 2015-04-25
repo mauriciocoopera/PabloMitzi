@@ -105,6 +105,31 @@ bool n_checkl (int row, int column,int number,vector< vector<int> >& theBoard)
     }
     return true;
 }
+
+bool quadrant (int row, int number, int column, vector< vector<int> >& theBoard )
+{
+  int cor, coc,limitr,limitc;
+              // (4,5)
+  cor = (row/3)*3;
+  coc = (column/3)*3;
+  limitr= cor + 3;
+  limitc= coc + 3;
+
+             //  (1,1) Posición izquierda superior del cuadrante donde se encuentra el número;
+  for (int i=coc; i<limitc; i++)
+  {
+    for (int j=cor; j<limitr;j++)
+    {
+      if (theBoard [i][j] == number )
+      {
+        cout << "Invalid move, equal number in the same quadrant" << endl;
+      return false;
+      }
+    }
+  }
+  return true;
+}
+
 /*
  * Your main program goes here.
  * first get the parameters, check if parameter size is 2
@@ -177,10 +202,11 @@ int main(int argc, char* argv[]) {
       {
         cout << "Give the new number: "<< endl;
         cin >> number;
-      }while ((n_checkl(row,column,number,theBoard)) != true);
+      }while (((n_checkl(row,column,number,theBoard)) != true) || ((quadrant (number,column,row, theBoard)) != true));
       theBoard [row][column] = number;
-      //FALTA LA CONDICIÖN DEL CUADRANTE
-      // check if valid (legal) and modify the board or notify that the move is invalid
+      cout << "\x1b[33m\x1b[40mThe table is: " << endl;
+      printBoard(theBoard);
+      cout << "\x1b[39;49m";
       continue;
     }
     if(userChoice == "erase"){
@@ -196,7 +222,12 @@ int main(int argc, char* argv[]) {
       if (programer_Board [row][column] != 0)
         cout << "Original numbers can´t be modified" << endl;
         else
+        {
           theBoard [row][column] = 0;
+        }
+      cout << "\x1b[33m\x1b[40mThe table is: " << endl;
+      printBoard(theBoard);
+      cout << "\x1b[39;49m";
       continue;
     }
     if(userChoice == "quit"){
